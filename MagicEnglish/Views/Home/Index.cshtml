@@ -2,6 +2,15 @@
     ViewBag.Title = "Home Page";
 }
 
+@if (User.Identity.IsAuthenticated)
+{
+    <h5>welcome admin</h5>
+}
+else
+{
+    <h5>welcome guest, to use more function please login</h5>
+}
+
 <div>
     <link href="~/Content/background.css" rel="stylesheet" />
     <h1 style="color:white;">
@@ -12,7 +21,7 @@
         <i>
             The most magical way to learn English!
         </i>
-  
+
     </h3>
 </div>
 
@@ -23,16 +32,16 @@
 
     </p>
     <div class="col-md-4">
-        <h2 style="color:white;>Getting started</h2>
-        <p style="color:white;>
+        <h2 style="color:white";>Getting started</h2>
+        <p style="color:white";>
             Magic English offers a wide variety of services from different
             levels. Students can book ahead of time with their favorite tutors
         </p>
         <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
     </div>
     <div class="col-md-4">
-        <h2 style="color:white;>Get more libraries</h2>
-        <p style="color:white;>
+        <h2 style="color:white";>Get more libraries</h2>
+        <p style="color:white";>
             Magic English also provides many English learning materials that students can download and
             there will be some English online mock test.
         </p>

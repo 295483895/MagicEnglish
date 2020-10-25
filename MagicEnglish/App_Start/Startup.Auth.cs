@@ -58,11 +58,11 @@ namespace MagicEnglish
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "721609893621-ntrcmsnm4qbi2nrg9rfr3iu7ru0hajv8.apps.googleusercontent.com",
+                ClientSecret = "Ts9FtA-N2-HSzFO4gHqc2q4g"
+            });
         }
     }
 }

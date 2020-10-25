@@ -21,11 +21,12 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Courses", "Index", "Lectures")</li>
+                    <li>@Html.ActionLink("Tutors", "Index", "Tutors")</li>
+                    <li>@Html.ActionLink("Map", "Index", "Locations")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Course", "Course", "Home")</li>
-                    <li>@Html.ActionLink("OnlineTest", "OnlineTest", "Home")</li>
-                    <li>@Html.ActionLink("Resource", "Resource", "Home")</li>
+                    <li>@Html.ActionLink("email", "Send_Email", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -35,7 +36,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p style="color:white;>&copy; @DateTime.Now.Year - Magic English</p>
+            <p style="color:white";>&copy; @DateTime.Now.Year - Magic English</p>
         </footer>
     </div>
 
