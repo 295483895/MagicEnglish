@@ -5,7 +5,10 @@
 }
 
 <h2>Index</h2>
-
+<div id="map" style="height: 300px"></div>
+@section Scripts{
+    <script src="~/Scripts/location.js"></script>
+}
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -27,17 +30,17 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
+    <tr class="coordinates">
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
-        <td>
+        <td class="description">
             @Html.DisplayFor(modelItem => item.Description)
         </td>
-        <td>
+        <td class="latitude">
             @Html.DisplayFor(modelItem => item.Latitude)
         </td>
-        <td>
+        <td class="longitude">
             @Html.DisplayFor(modelItem => item.Longitude)
         </td>
         <td>
