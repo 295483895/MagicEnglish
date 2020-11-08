@@ -8,11 +8,14 @@ using System.Web;
 using System.Web.Mvc;
 using MagicEnglish.Models;
 
+
 namespace MagicEnglish.Controllers
 {
     public class LecturesController : Controller
     {
         private MagicEnglishModel db = new MagicEnglishModel();
+
+        public static Lecture temp = new Lecture();
 
         // GET: Lectures
         public ActionResult Index()
@@ -35,6 +38,16 @@ namespace MagicEnglish.Controllers
             return View(lecture);
         }
 
+        public ActionResult ErrorInfor()
+        {
+            return View();
+        }
+
+        public ActionResult Error()
+        {
+            return View();
+        }
+
         [Authorize(Roles = "Administrator")]
         // GET: Lectures/Create
         public ActionResult Create()
@@ -49,12 +62,36 @@ namespace MagicEnglish.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,NAME,Description,Date,Score,Score_num")] Lecture lecture)
         {
-            if (ModelState.IsValid)
+            bool same = false;
+            foreach (Lecture lec in db.Lectures.ToList())
             {
-                db.Lectures.Add(lecture);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if(lec.Date == lecture.Date)
+                {
+                    same = true;
+                }
             }
+            if(same == false)
+            {
+                if (ModelState.IsValid)
+                {
+                    // Validation of Score and Score number
+                    if (float.Parse(lecture.Score) > 5 || float.Parse(lecture.Score) < 0 || lecture.Score_num < 0)
+                    {
+                        return RedirectToAction("ErrorInfor");
+                    } 
+                    else
+                    {
+                        db.Lectures.Add(lecture);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                }
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
+          
 
             return View(lecture);
         }
@@ -103,6 +140,49 @@ namespace MagicEnglish.Controllers
                 return HttpNotFound();
             }
             return View(lecture);
+        }
+
+        public ActionResult Rate(int id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Lecture lecture = db.Lectures.Find(id);
+            temp = lecture;
+            if (lecture == null)
+            {
+                return HttpNotFound();
+            }
+
+            List<SelectListItem> selection = new List<SelectListItem>();
+            selection.Add(new SelectListItem() { Text = "★", Value = "1", Selected = false });
+            selection.Add(new SelectListItem() { Text = "★★", Value = "2", Selected = false });
+            selection.Add(new SelectListItem() { Text = "★★★", Value = "3", Selected = false });
+            selection.Add(new SelectListItem() { Text = "★★★★", Value = "4", Selected = false });
+            selection.Add(new SelectListItem() { Text = "★★★★★", Value = "5", Selected = true });
+            ViewBag.Select = selection;
+            return View(lecture);
+        }
+        [HttpPost]
+        public ActionResult Rate(FormCollection form)
+        {
+            string rate = form["Select"];
+            int rateScore = 0;
+            int.TryParse(rate, out rateScore);
+            double dou = double.Parse(temp.Score);
+            double finalScore = (dou * temp.Score_num + rateScore) / (temp.Score_num + 1);
+            temp.Score = String.Format("{0:F}", finalScore);
+            temp.Score_num++;
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(temp).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(temp);
         }
 
         public ActionResult Book(int id)

@@ -4,12 +4,13 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Tutor Information</h2>
+<td>@Html.ActionLink("Chart", "Chart")  |</td>
 @if (User.IsInRole("Administrator"))
 {
-    <p>
+    <td>
         @Html.ActionLink("Create New", "Create")
-    </p>
+    </td>
 }
 <table class="table">
     <tr>
@@ -23,7 +24,7 @@
             @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Path)
+            Welcome Level
         </th>
         <th></th>
     </tr>
@@ -59,3 +60,4 @@
     }
 
 </table>
+

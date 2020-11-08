@@ -35,6 +35,11 @@ namespace MagicEnglish.Controllers
             return View(tutor);
         }
 
+        public ActionResult Chart()
+        {
+            return View();
+        }
+
         // GET: Tutors/Create
         public ActionResult Create()
         {

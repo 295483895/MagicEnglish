@@ -396,6 +396,7 @@
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\computeScore.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap4.js" />
@@ -771,6 +772,10 @@
     <Content Include="Views\Tables\Index.cshtml" />
     <Content Include="Views\Lectures\Book.cshtml" />
     <Content Include="Views\Home\NeedRegister.cshtml" />
+    <Content Include="Views\Lectures\Rate.cshtml" />
+    <Content Include="Views\Lectures\Error.cshtml" />
+    <Content Include="Views\Lectures\ErrorInfor.cshtml" />
+    <Content Include="Views\Tutors\Chart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Attachment\" />

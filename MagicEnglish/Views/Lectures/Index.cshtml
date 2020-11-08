@@ -7,10 +7,17 @@
 <h2>Courses</h2>
 @if (User.IsInRole("Administrator") || User.IsInRole("Tutor"))
 {
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+    <td>
+        @Html.ActionLink("Create New", "Create")
+    </td>
 }
+<!-- Font Awesome Icon Library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    .checked {
+        color: orange;
+    }
+</style>
 <table class="table">
     <thead>
         <tr>
@@ -36,47 +43,131 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NAME)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Score)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Score_num)
-            </td>
-            @if (User.IsInRole("Administrator"))
-            {
+            <tr>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    @Html.DisplayFor(modelItem => item.NAME)
                 </td>
-            }
-            @if (User.IsInRole("Tutor"))
-            {
-                <td>@Html.ActionLink("Details", "Details", new { id = item.Id })</td>
-            }
-            @if (User.IsInRole("Student"))
-            {
                 <td>
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Book", "Book", new { id = item.Id })
+                    @Html.DisplayFor(modelItem => item.Description)
                 </td>
-            }
-        </tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @if (0.5 >= float.Parse(item.Score) && float.Parse(item.Score) >= 0)
+                    {
+                        <span class="fa fa-star-half checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    }
+                    else if (1 >= float.Parse(item.Score) && float.Parse(item.Score) > 0.5)
+                    {
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    }
+                    else if (1.5 >= float.Parse(item.Score) && float.Parse(item.Score) > 1)
+                    {
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star-half checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    }
+                    else if (2 >= float.Parse(item.Score) && float.Parse(item.Score) > 1.5)
+                    {
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    }
+                    else if (2.5 >= float.Parse(item.Score) && float.Parse(item.Score) > 2)
+                    {
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star-half checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    }
+                    else if (3 >= float.Parse(item.Score) && float.Parse(item.Score) > 2.5)
+                    {
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    }
+                    else if (3.5 >= float.Parse(item.Score) && float.Parse(item.Score) > 3)
+                    {
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star-half checked"></span>
+                        <span class="fa fa-star"></span>
+                    }
+                    else if (4 >= float.Parse(item.Score) && float.Parse(item.Score) > 3.5)
+                    {
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                    }
+                    else if (4.5 >= float.Parse(item.Score) && float.Parse(item.Score) > 4)
+                    {
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star-half checked"></span>
+                    }
+                    else if (5 >= float.Parse(item.Score) && float.Parse(item.Score) > 4.5)
+                    {
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    }
+
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Score_num)
+                </td>
+
+                @if (User.IsInRole("Administrator"))
+                {
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                }
+                @if (User.IsInRole("Tutor"))
+                {
+                    <td>@Html.ActionLink("Details", "Details", new { id = item.Id })</td>
+                }
+                @if (User.IsInRole("Student"))
+                {
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Book", "Book", new { id = item.Id }) |
+                        @Html.ActionLink("Rate", "Rate", new { id = item.Id })
+                    </td>
+                }
+            </tr>
         }
     </tbody>
 
 
 </table>
+
 
 
 @section Scripts {
