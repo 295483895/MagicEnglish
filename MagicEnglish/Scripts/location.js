@@ -1,11 +1,5 @@
-﻿/**
-* This is a simple JavaScript demonstration of how to call MapBox API to load the maps.
-* I have set the default configuration to enable the geocoder and the navigation control.
-* https://www.mapbox.com/mapbox-gl-js/example/popup-on-click/
-*
-* @author Jian Liew <jian.liew@monash.edu>
-*/
-const TOKEN = "pk.eyJ1IjoibG14Mjk1NDgzODk1IiwiYSI6ImNrZ3Njd3F2ODA5aXAycm54NTN2NjNkaXIifQ.9wlmI16icfk4LRKIIl8rQA";
+﻿
+const TOKEN = "pk.eyJ1IjoibG14Mjk1NDgzODk1IiwiYSI6ImNraDg0bnh1ZDBhdWczMG83aHE2ZzZwMXcifQ.NuBynzXC7zmWOitKUsNdHA";
 var locations = [];
 // The first step is obtain all the latitude and longitude from the HTML
 // The below is a simple jQuery selector
@@ -21,14 +15,14 @@ $(".coordinates").each(function () {
     };
     // Push them all into an array.
     locations.push(point);
-}); 
+});
 var data = [];
 for (i = 0; i < locations.length; i++) {
     var feature = {
         "type": "Feature",
         "properties": {
             "description": locations[i].description,
-            "icon": "circle-15"
+            "icon": "college-15"
         },
         "geometry": {
             "type": "Point",
@@ -37,7 +31,7 @@ for (i = 0; i < locations.length; i++) {
     };
     data.push(feature)
 }
-mapboxgl.accessToken = "pk.eyJ1IjoibG14Mjk1NDgzODk1IiwiYSI6ImNrZ3Njd3F2ODA5aXAycm54NTN2NjNkaXIifQ.9wlmI16icfk4LRKIIl8rQA";
+mapboxgl.accessToken = "pk.eyJ1IjoibG14Mjk1NDgzODk1IiwiYSI6ImNraDg0bnh1ZDBhdWczMG83aHE2ZzZwMXcifQ.NuBynzXC7zmWOitKUsNdHA";
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v10',
@@ -63,10 +57,10 @@ map.on('load', function () {
     });
     map.addControl(new MapboxGeocoder({
         accessToken: mapboxgl.accessToken
-    }));
+    }));;
     map.addControl(new mapboxgl.NavigationControl());
-// When a click event occurs on a feature in the places layer, open a popup at the
-// location of the feature, with description HTML from its properties.
+    // When a click event occurs on a feature in the places layer, open a popup at the
+    // location of the feature, with description HTML from its properties.
     map.on('click', 'places', function (e) {
         var coordinates = e.features[0].geometry.coordinates.slice();
         var description = e.features[0].properties.description;
@@ -81,7 +75,7 @@ map.on('load', function () {
             .setHTML(description)
             .addTo(map);
     });
-// Change the cursor to a pointer when the mouse is over the places layer.
+    // Change the cursor to a pointer when the mouse is over the places layer.
     map.on('mouseenter', 'places', function () {
         map.getCanvas().style.cursor = 'pointer';
     });

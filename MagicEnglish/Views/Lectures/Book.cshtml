@@ -1,13 +1,13 @@
 ﻿@model MagicEnglish.Models.Lecture
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Book";
 }
 
-<h2>Details</h2>
+<h2>Book</h2>
 
 <div>
-    <h4>Lecture</h4>
+    <h5>Are you sure you want to book this course?</h5>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -51,7 +51,14 @@
         </dd>
 
     </dl>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Confirm" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
 </div>
-<p>
-    @Html.ActionLink("Back to List", "Index")
-</p>
+

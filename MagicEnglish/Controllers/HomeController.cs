@@ -39,19 +39,15 @@ namespace MagicEnglish.Controllers
             return View();
         }
 
-        public ActionResult OnlineTest()
+        public ActionResult NeedRegister()
         {
-            ViewBag.Message = "Online Test page";
+            ViewBag.Message = "Need Register";
 
             return View();
         }
 
-        public ActionResult Resource()
-        {
-            ViewBag.Message = "Resource page";
 
-            return View();
-        }
+
 
         public ActionResult Send_Email()
         {

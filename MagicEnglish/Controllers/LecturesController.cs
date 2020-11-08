@@ -35,7 +35,7 @@ namespace MagicEnglish.Controllers
             return View(lecture);
         }
 
-        [Authorize(Roles = "Tutor")]
+        [Authorize(Roles = "Administrator")]
         // GET: Lectures/Create
         public ActionResult Create()
         {
@@ -105,6 +105,27 @@ namespace MagicEnglish.Controllers
             return View(lecture);
         }
 
+        public ActionResult Book(int id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Lecture lecture = db.Lectures.Find(id);
+            if (lecture == null)
+            {
+                return HttpNotFound();
+            }
+            return View(lecture);
+        }
+
+        [HttpPost, ActionName("Book")]
+        [ValidateAntiForgeryToken]
+        public ActionResult BookConfirmed(int id)
+        {
+            return RedirectToAction("Index");
+        }
+
         // POST: Lectures/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -115,6 +136,8 @@ namespace MagicEnglish.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+
 
         protected override void Dispose(bool disposing)
         {

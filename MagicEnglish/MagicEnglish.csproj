@@ -740,9 +740,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Home\Course.cshtml" />
-    <Content Include="Views\Home\OnlineTest.cshtml" />
-    <Content Include="Views\Home\Resource.cshtml" />
     <Content Include="Views\Lectures\Create.cshtml" />
     <Content Include="Views\Lectures\Delete.cshtml" />
     <Content Include="Views\Lectures\Details.cshtml" />
@@ -772,6 +769,8 @@
     <Content Include="Views\Tables\Details.cshtml" />
     <Content Include="Views\Tables\Edit.cshtml" />
     <Content Include="Views\Tables\Index.cshtml" />
+    <Content Include="Views\Lectures\Book.cshtml" />
+    <Content Include="Views\Home\NeedRegister.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Attachment\" />
